@@ -3446,30 +3446,30 @@ function Navigation({ onNavigate, currentRoute }) {
       <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div 
-            className="flex items-center gap-3 cursor-pointer transform hover:scale-105 transition-transform duration-300"
-            onClick={() => onNavigate('home')}
-          >
-            <div className="relative">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-              >
-                ✈️
-              </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full animate-pulse"></div>
-            </div>
-            <div>
-              <div className={`font-bold text-xl ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
-                OLA
-              </div>
-              <div className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-white/80'}`}>
-                Extraordinary Journeys
-              </div>
-            </div>
-          </div>
+                <div  
+                className="flex items-center gap-3 cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                onClick={() => onNavigate('home')}
+                > 
+                <div className="relative">
+                  <img   
+                  src="images/ola_logo.png"
+                  alt="OLA Logo"
+                  className="w-12 h-12 rounded-xl object-contain shadow-lg bg-white"
+                  style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+                  />
+                  {/* <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full animate-pulse"></div> */}
+                </div>
+                <div>
+                  <div className={`font-bold text-xl ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+                  OLA
+                  </div>
+                  <div className={`text-xs ${isScrolled ? 'text-gray-600' : 'text-white/80'}`}>
+                  Extraordinary Journeys
+                  </div> 
+                </div>
+                </div>
 
-          {/* Desktop Navigation */}
+                {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {['Home', 'Tours', 'Destinations', 'About', 'Contact'].map((item) => (
               <button
@@ -4796,12 +4796,12 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-3 mb-6">
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl"
-                    style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-                  >
-                    ✈️
-                  </div>
+                  <img   
+                  src="images/ola_logo.png"
+                  alt="OLA Logo"
+                  className="w-12 h-12 rounded-xl object-contain shadow-lg bg-white"
+                  style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+                  />
                   <div>
                     <div className="font-bold text-2xl">OLA</div>
                     <div className="text-gray-400 text-sm">Extraordinary Journeys</div>
@@ -4811,8 +4811,8 @@ export default function App() {
                   Creating transformative travel experiences that connect people, cultures, and landscapes around the world.
                 </p>
                 <div className="flex gap-4">
-                  {['📘', '📷', '🐦', '📺'].map((icon, index) => (
-                    <div
+                  {['📘', '📷', 'X', '📺'].map((icon, index) => (
+                    <div 
                       key={index}
                       className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
                     >
