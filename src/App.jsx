@@ -1272,7 +1272,8 @@ function ToursAndTravelers({ destinations, tours, onBook }) {
                     ))}
                   </div> 
                   <div className="flex gap-3">
-                    <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-white hover:border-blue-500 hover:text-white transition-all">
+                    <button  
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-gray-700 font-medium hover:border-blue-500 hover:text-blue-600 transition-all duration-300 hover:scale-105 transform">
                       View Details
                     </button>
                     <button
