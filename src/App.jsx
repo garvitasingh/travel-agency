@@ -1270,9 +1270,9 @@ function ToursAndTravelers({ destinations, tours, onBook }) {
                         {h}
                       </span>
                     ))}
-                  </div>
+                  </div> 
                   <div className="flex gap-3">
-                    <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all">
+                    <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-white hover:border-blue-500 hover:text-white transition-all">
                       View Details
                     </button>
                     <button
@@ -2306,8 +2306,8 @@ export default function App() {
                 </div>
                 <br></br>
                 <div className="flex justify-center">
-  <button onClick={() => navigate('tours&destinations')}  style={{ background: '#0077B6' }} className="px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all">
-    View Details
+  <button onClick={() => navigate('tours&destinations')}  style={{ background: '#0077B6' }} className="px-6 py-2 border border-gray-300 rounded-full text-white hover:border-blue-500 hover:text-white transition-all">
+    Explore Tours
   </button>
 </div>
 
@@ -2404,10 +2404,10 @@ export default function App() {
                 <div className="max-w-7xl mx-auto">
                   <DestinationGrid />                 
                 </div>
-                <br></br>
+                <br></br> 
                  <div className="flex justify-center">
-  <button onClick={() => navigate('tours&destinations')}  style={{ background: '#0077B6' }} className="px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all">
-    View Details
+  <button onClick={() => navigate('tours&destinations')}  style={{ background: '#0077B6' }} className="px-6 py-2 border border-gray-300 rounded-full text-white hover:border-blue-500 hover:text-white transition-all">
+    Explore Destinations
   </button>
 </div>
               </div>
@@ -2819,6 +2819,8 @@ We are a group of passionate Travelers turned Travel Experts who take pride in c
               </div>
               <button
                 type="submit"
+                                      style={{ background: '#0077B6' }}
+
                 className="w-full py-3 rounded-full bg-blue-600 text-white font-semibold text-lg shadow-md hover:bg-blue-700 hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 Send Message
@@ -2827,7 +2829,10 @@ We are a group of passionate Travelers turned Travel Experts who take pride in c
           </div>
 
           {/* Contact Info / Location */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 flex flex-col justify-center">
+          <div
+            className="text-white rounded-2xl shadow-xl p-8 flex flex-col justify-center"
+            style={{ background: '#0077B6' }}
+          >
             <h2 className="text-2xl font-bold mb-6">Our Office</h2>
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
@@ -2849,11 +2854,10 @@ We are a group of passionate Travelers turned Travel Experts who take pride in c
                 <div>
                   <h3 className="font-semibold">Email</h3>
                   <p>hello@OLA.com</p>
-                </div>
+                </div> 
               </div>
-            </div>
-
-            {/* Google Maps Embed */}
+          
+          </div>
             <div className="mt-8">
               <iframe
                 title="Office Location"
