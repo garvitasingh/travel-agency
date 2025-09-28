@@ -94,7 +94,15 @@ html {
   box-sizing: border-box;
 }
 
-body {
+/* body {
   font-family: 'Georgia', serif;
   line-height: 1.6;
+} */
+body {
+  font-family: 'Lato', sans-serif;
+   line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
 }
