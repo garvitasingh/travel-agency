@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { TOURSHOME, DESTINATIONS, TESTIMONIALS } from '../data/siteData';
-// Enhanced Testimonials Carousel
+import React, { useEffect, useState } from 'react';
+import { TESTIMONIALS } from '../data/siteData';
+import colors from './colors';
+
 function TestimonialsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -20,33 +21,51 @@ function TestimonialsCarousel() {
         >
           {TESTIMONIALS.map((testimonial) => (
             <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+              <div
+                className="rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
+                style={{ backgroundColor: colors.white }}
+              >
                 <div className="flex items-center gap-4 mb-6">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover border-4 border-gray-100"
+                    className="w-16 h-16 rounded-full object-cover"
+                    style={{ border: `4px solid ${colors.background}` }}
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                    <h4 className="font-bold" style={{ color: colors.text }}>
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-sm" style={{ color: colors.lightText }}>
+                      {testimonial.location}
+                    </p>
                     <div className="flex gap-1 mt-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-amber-400 text-sm">★</span>
+                        <span key={i} style={{ color: colors.accent, fontSize: '0.875rem' }}>
+                          ★
+                        </span>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <blockquote className="text-gray-700 text-lg leading-relaxed mb-4 italic">
+                <blockquote
+                  className="text-lg leading-relaxed mb-4 italic"
+                  style={{ color: colors.lightText }}
+                >
                   "{testimonial.quote}"
                 </blockquote>
 
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full">
+                <div className="flex items-center justify-between text-sm">
+                  <span
+                    className="px-3 py-1 rounded-full"
+                    style={{ backgroundColor: colors.secondary + '33', color: colors.secondary }}
+                  >
                     {testimonial.tour}
                   </span>
-                  <span style={{ fontFamily: 'initial' }}>{new Date(testimonial.date).toLocaleDateString()}</span>
+                  <span style={{ fontFamily: 'initial', color: colors.lightText }}>
+                    {new Date(testimonial.date).toLocaleDateString()}
+                  </span>
                 </div>
               </div>
             </div>
@@ -60,12 +79,17 @@ function TestimonialsCarousel() {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${index === currentIndex ? 'bg-blue-500 scale-125' : 'bg-gray-300'
-              }`}
+            className="w-3 h-3 rounded-full transition-all duration-300 hover:scale-125"
+            style={{
+              backgroundColor:
+                index === currentIndex ? colors.primary : colors.lightText + '33',
+              transform: index === currentIndex ? 'scale(1.25)' : 'scale(1)',
+            }}
           />
         ))}
       </div>
     </div>
   );
 }
- export default TestimonialsCarousel;
+
+export default TestimonialsCarousel;

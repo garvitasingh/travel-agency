@@ -1,105 +1,134 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { TOURS, DESTINATIONS, Slider } from '../data/siteData';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { DESTINATIONS } from "../data/siteData";
+import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import colors from "./colors";
 
-// Interactive Destination Grid
-function DestinationGrid() {
-  const [selectedDestination, setSelectedDestination] = useState(null);
+export default function DestinationGrid() {
   const navigate = useNavigate();
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {DESTINATIONS.map((destination, index) => (
-        <div
-          key={destination.id}
-          onClick={() => setSelectedDestination(destination)}
-          className="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+    <section className="relative w-full bg-gradient-to-b from-white to-gray-50 pb-20">
+      {/* Section Heading */}
+      <div className="text-center pb-10">
+        <motion.h2
+          className="text-4xl md:text-6xl font-extrabold mb-4 text-gray-900"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <img
-            src={destination.img}
-            alt={destination.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 className="text-xl font-bold mb-1">{destination.name}</h3>
-            <p className="text-sm text-white/80 mb-2">{destination.country}</p>
-            <p className="text-sm text-white/70 mb-3 line-clamp-2">{destination.description}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-sm bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                {destination.toursCount} Tours
-              </span>
-              <span className="text-xs text-white/60">{destination.bestTime}</span>
-            </div>
-          </div>
-
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
-            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 scale-0 group-hover:scale-100 transition-transform duration-300">
-              <span className="text-2xl">🔍</span>
-            </div>
-          </div>
-        </div>
-      ))}
-
-      {/* Destination Modal */}
-      {selectedDestination && (
-        <div
-          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedDestination(null)}
+          Explore Our Top Destinations
+        </motion.h2>
+        <motion.p
+          className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <div
-            className="bg-white rounded-2xl overflow-hidden max-w-2xl w-full shadow-2xl transform scale-100 transition-transform duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={selectedDestination.img}
-              alt={selectedDestination.name}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold mb-2">{selectedDestination.name}</h3>
-              <p className="text-gray-600 mb-4">{selectedDestination.description}</p>
-              <div className="grid grid-cols-3 gap-4 text-center text-sm">
-                <div>
-                  <div className="font-bold text-blue-600">{selectedDestination.toursCount}</div>
-                  <div className="text-gray-500">Tours Available</div>
-                </div>
-                <div>
-                  <div className="font-bold text-green-600">{selectedDestination.bestTime}</div>
-                  <div className="text-gray-500">Best Time</div>
-                </div>
-                <div>
-                  <div className="font-bold text-purple-600">{selectedDestination.highlights.length}</div>
-                  <div className="text-gray-500">Highlights</div>
-                </div>
-              </div>
-              <div className="mt-4">
-                <h4 className="font-semibold mb-2">Key Highlights:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedDestination.highlights.map((highlight, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
-                    >
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <button
-                onClick={() => navigate('/tours')}
-                className="w-full mt-6 px-6 py-3 rounded-full text-white font-semibold hover:scale-105 transform transition-all duration-300"
-                style={{ background: '#0077B6' }}
+          From majestic mountains to tropical beaches — discover places that awaken your spirit and inspire your next journey.
+        </motion.p>
+      </div>
+
+      {/* Destination Slider */}
+      <div className="relative w-full">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={1}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          pagination={{
+            clickable: true,
+            el: ".swiper-pagination",
+          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          loop
+          className="w-full h-[80vh] md:h-[90vh]"
+        >
+          {DESTINATIONS.map((destination) => (
+            <SwiperSlide key={destination.id}>
+              <motion.div
+                className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
               >
-                Explore Tours in {selectedDestination.name}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+                {/* Background Image */}
+                <motion.img
+                  src={destination.img}
+                  alt={destination.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  initial={{ scale: 1 }}
+                  animate={{ scale: 1.1 }}
+                  transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+                />
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                {/* Content */}
+                <div className="relative z-10 text-center px-6 max-w-3xl">
+                  <motion.h2
+                    className="text-4xl md:text-6xl font-extrabold mb-4 text-white drop-shadow-lg"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    {destination.name}
+                  </motion.h2>
+
+                  <motion.p
+                    className="text-lg md:text-xl mb-3 text-gray-200"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                  >
+                    {destination.country}
+                  </motion.p>
+
+                  <motion.p
+                    className="text-sm md:text-base mb-8 text-gray-100 leading-relaxed"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1.2 }}
+                  >
+                    {destination.description}
+                  </motion.p>
+
+                  <div className="flex justify-center items-center gap-4 mb-8">
+                    <span className="text-sm md:text-base bg-white/80 text-black font-semibold px-4 py-2 rounded-full backdrop-blur-sm">
+                      {destination.toursCount} Tours
+                    </span>
+                    <span className="text-sm md:text-base text-white font-medium">
+                      Best Time: {destination.bestTime}
+                    </span>
+                  </div>
+
+                  <motion.button
+                    onClick={() => navigate("/tours")}
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-xl hover:scale-105 transition-transform duration-300"
+                  >
+                    Explore {destination.name}
+                  </motion.button>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Navigation Arrows */}
+        <div className="swiper-button-prev !text-white !w-10 !h-10 !left-4 md:!left-10 after:!text-2xl" />
+        <div className="swiper-button-next !text-white !w-10 !h-10 !right-4 md:!right-10 after:!text-2xl" />
+
+        {/* Pagination Dots */}
+        <div className="swiper-pagination !bottom-5 !text-white" />
+      </div>
+    </section>
   );
 }
-export default DestinationGrid;

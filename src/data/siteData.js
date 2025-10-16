@@ -452,7 +452,8 @@ export const SOCIAL_POSTS = [
     date: '2 hours ago',
     likes: 1247,
     comments: 89,
-    location: 'Maldives'
+    location: 'Maldives',
+    link: 'https://instagram.com'
   },
   {
     id: 2,
@@ -462,7 +463,8 @@ export const SOCIAL_POSTS = [
     date: '1 day ago',
     likes: 523,
     comments: 34,
-    location: 'Angkor Wat, Cambodia'
+    location: 'Angkor Wat, Cambodia',
+    link: 'https://facebook.com'
   },
   {
     id: 3,
@@ -472,7 +474,8 @@ export const SOCIAL_POSTS = [
     date: '3 days ago',
     likes: 2156,
     comments: 127,
-    location: 'Reykjavik, Iceland'
+    location: 'Reykjavik, Iceland',
+    link: 'https://instagram.com'
   },
   {
     id: 4,
@@ -482,7 +485,8 @@ export const SOCIAL_POSTS = [
     date: '5 days ago',
     likes: 892,
     comments: 156,
-    location: 'Himalayas, Nepal'
+    location: 'Himalayas, Nepal',
+    link: 'https://facebook.com'
   },
   {
     id: 5,
@@ -492,7 +496,8 @@ export const SOCIAL_POSTS = [
     date: '1 week ago',
     likes: 1834,
     comments: 98,
-    location: 'Santorini, Greece'
+    location: 'Santorini, Greece',
+    link: 'https://instagram.com'
   },
   {
     id: 6,
@@ -502,7 +507,8 @@ export const SOCIAL_POSTS = [
     date: '1 week ago',
     likes: 678,
     comments: 67,
-    location: 'Torres del Paine, Chile'
+    location: 'Torres del Paine, Chile',
+    link: 'https://facebook.com'
   }
 ];
 

@@ -1,26 +1,61 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import AnimatedSection from './AnimatedSection';
-import { TOURSHOME, SOCIAL_POSTS } from '../data/siteData';
-import { FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp, FaYoutube, FaLocationArrow } from "react-icons/fa";
-// Social Media Posts Section
+import { SOCIAL_POSTS } from '../data/siteData';
+import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import colors from './colors';
+import { Link } from 'react-router-dom';
+
 function SocialMediaFeed() {
   const [selectedPost, setSelectedPost] = useState(null);
 
   return (
-    <AnimatedSection className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+    <AnimatedSection
+      className="py-20"
+      style={{
+        background: `linear-gradient(to bottom right, ${colors.accent}10, ${colors.primary}10)`,
+      }}
+    >
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-4">
-            <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
-            Live from Our Adventures
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Follow Our
-            <span className="text-gray-900"> Journey</span>
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: colors.text }}>
+            Follow Our <span style={{ color: colors.text }}>Journey</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: colors.text + '99' }}>
             Real moments from real adventures. Follow along as our travelers explore the world's most incredible destinations.
           </p>
+          {/* <div className="text-center mb-8 mt-6 flex flex-wrap justify-center gap-4">
+            <Link
+              className="px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 whitespace-nowrap"
+              style={{ background: colors.accent, color: colors.text }}
+            >
+              Book Now
+            </Link>
+          </div> */}
+        </div>
+        <div className="text-center mt-4 mb-6">
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
+              style={{
+                background: 'linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4)',
+                color: 'white'
+              }}
+            >
+              <FaInstagram /> 
+            </button>
+            <button
+              className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
+              style={{ background: '#1877F2', color: 'white' }}
+            >
+              <FaFacebookF /> 
+            </button>
+            <button
+              className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
+              style={{ background: '#25D366', color: 'white' }}
+            >
+              <FaWhatsapp /> 
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -28,131 +63,105 @@ function SocialMediaFeed() {
             <div
               key={post.id}
               onClick={() => setSelectedPost(post)}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer group"
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 cursor-pointer group"
+              style={{ background: colors.white }}
             >
-              <div className="relative h-64">
-                <img
-                  src={post.image}
-                  alt="Social post"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="relative h-64 group overflow-hidden rounded-2xl">
+  {/* Image */}
+  <img
+    src={post.image}
+    alt="Social post"
+    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+  />
 
-                {/* Platform Badge */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-                  <span className="text-lg">
-                    {post.platform === 'instagram' ? <FaInstagram/> : <FaFacebookF />}
-                  </span>
-                  <span className="text-sm font-medium capitalize">{post.platform}</span>
-                </div>
+  {/* Overlay gradient */}
+  <div
+    className="absolute inset-0"
+    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" }}
+  />
 
-                {/* Location */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-                  <span className="text-sm font-medium">📍 {post.location}</span>
-                </div>
+  {/* Platform Badge */}
+  <div
+    className="absolute top-4 right-4 flex items-center gap-2 backdrop-blur-sm rounded-full px-3 py-1"
+    style={{
+      background:
+        post.platform === "instagram"
+          ? "linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4)"
+          : post.platform === "facebook"
+          ? "#1877F2"
+          : post.platform === "whatsapp"
+          ? "#25D366"
+          : "#999",
+      color: "#fff",
+    }}
+  >
+    <span className="text-lg">
+      {post.platform === "instagram" ? (
+        <FaInstagram />
+      ) : post.platform === "facebook" ? (
+        <FaFacebookF />
+      ) : (
+        <FaWhatsapp />
+      )}
+    </span>
+  </div>
 
-                {/* Engagement Stats */}
-                <div className="absolute bottom-4 left-4 flex items-center gap-4 text-white">
-                  <div className="flex items-center gap-1">
-                    <span className="text-red-400">❤️</span>
-                    <span className="text-sm">{post.likes}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span>💬</span>
-                    <span className="text-sm">{post.comments}</span>
-                  </div>
-                </div>
-              </div>
+  {/* Caption always visible */}
+  <div
+    className="absolute bottom-0 left-0 w-full text-white p-4"
+    style={{
+      background: "linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4), transparent)",
+    }}
+  >
+    <p className="text-sm leading-relaxed z-10 relative">
+      {post.caption.length > 120
+        ? post.caption.slice(0, 120) + "..."
+        : post.caption}
+    </p>
+  </div>
 
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-gray-500">{post.date}</span>
-                  {/* <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                    <span className="text-xs text-gray-500">Live</span>
-                  </div> */}
-                </div>
-                <p className="text-gray-700 text-sm leading-relaxed group-hover:text-gray-900 transition-colors">
-                  {post.caption.slice(0, 120)}...
-                </p>
-              </div>
+  {/* Hover overlay layer */}
+  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+    {post.link && (
+      <a
+        href={post.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`px-5 py-2 rounded-full text-sm font-semibold text-white transition-transform duration-500 transform translate-y-4 group-hover:translate-y-0 hover:scale-105 ${
+          post.platform === "instagram"
+            ? "bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF]"
+            : post.platform === "facebook"
+            ? "bg-[#1877F2]"
+            : "bg-[#25D366]"
+        }`}
+      >
+        View More
+      </a>
+    )}
+  </div>
+</div>
+
             </div>
           ))}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-6 py-3 rounded-full font-semibold text-black transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2 "
-              style={{ background: '#FFD166' }}
+            <button
+              className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
+              style={{ background: colors.accent, color: colors.white }}
             >
-              <span><FaInstagram/></span>
-              Follow on Instagram
+              <FaInstagram /> Follow on Instagram
             </button>
-            {/* <button className="px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
-              style={{ background: 'linear-gradient(45deg, #1877f2, #42a5f5)' }}
-            > */}
-            <button className="px-6 py-3 rounded-full font-semibold text-black transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
-              style={{ background: '#90E0EF' }}
+            <button
+              className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform flex items-center gap-2"
+              style={{ background: colors.secondary, color: colors.text }}
             >
-              <span><FaFacebookF/></span>
-              Like on Facebook
+              <FaFacebookF /> Like on Facebook
             </button>
           </div>
-        </div>
-
-        {/* Social Post Modal */}
-        {selectedPost && (
-          <div
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setSelectedPost(null)}
-          >
-            <div
-              className="bg-white rounded-2xl overflow-hidden max-w-2xl w-full shadow-2xl transform scale-100 transition-transform duration-300"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedPost.image}
-                alt="Social post"
-                className="w-full h-64 md:h-80 object-cover"
-              />
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">
-                      {selectedPost.platform === 'instagram' ? '📷' : '📘'}
-                    </span>
-                    <div>
-                      <div className="font-bold">OLA</div>
-                      <div className="text-sm text-gray-500">{selectedPost.date}</div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setSelectedPost(null)}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                  >
-                    ❌
-                  </button>
-                </div>
-                <p className="text-gray-700 mb-4">{selectedPost.caption}</p>
-                <div className="flex items-center gap-6 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-red-400">❤️</span>
-                    <span>{selectedPost.likes} likes</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span>💬</span>
-                    <span>{selectedPost.comments} comments</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span>📍</span>
-                    <span>{selectedPost.location}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        </div> */}
       </div>
     </AnimatedSection>
   );
